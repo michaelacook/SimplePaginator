@@ -117,15 +117,15 @@ $data = $paginator->getPage();
 $nav = $paginator->getNavHtml();
 ?>
 <body>
-    <ul>
-        <?php
-        foreach ($item in $data) {
-            // render your data
-        }
-        ?>
-    </ul>
-
     <div class="container">
+        <ul>
+            <?php
+            foreach ($item in $data) {
+                // render your data
+            }
+            ?>
+        </ul>
+
         <?php echo $nav; ?>
     </div>
 </body>
