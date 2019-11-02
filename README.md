@@ -65,23 +65,23 @@ class ExampleController
         // An example variable representing dynamic data
         $data = $exampleModel->getData();
 
-        $paginator = new Paginator($this->view, $data, 10);
+        $paginator = new Paginator($data, 10, $this->view);
 
         return $this->view->render($response, 'test.twig', $args);
     }
 }
 ```
 
-The `SimplePaginator` class requires three arguments: `$view`, `$data`, and `$itemsPerPage`:
-- The `$view` argument must either be the Twig view object, or `false`. `$view` has a
-default value of `false`, so if you are not using Twig then omit this argument.
-- If you are using Slim 3, `$view` will be the `Slim\Views\Twig` object registered on
-the `$container`.
+The `SimplePaginator` class requires three arguments: $data`, `$itemsPerPage`, and `$view`:
 - `$data` is the data to be paginated and displayed dynamically. This could be the
 results of a database query or other application data to be displayed in the view.
 `$data` must be an `array`.
 - `$itemsPerPage` is simply how many items from `$data` will be displayed on one
 page. `$itemsPerPage` must be an `int`.
+- The `$view` argument must either be the Twig view object, or `false`. `$view` has a
+default value of `false`, so if you are not using Twig then omit this argument.
+- If you are using Slim 3, `$view` will be the `Slim\Views\Twig` object registered on
+the `$container`.
 
 4. Use the `getPage()` method to get the dynamic data to be displayed and pass it to your view:
 

@@ -32,11 +32,10 @@ class SimplePaginator
     /**
     * @param $view must be an instance of the twig view object
     * In Slim 3, use $this->view when instantiating inside a controller or route
-    * By default, @param view is false and can be omitted if Twig is not being used
+    * By default, @param view is false so if Twig is not being used then omit $view
     */
-    public function __construct($view=false, array $data, int $itemsPerPage)
+    public function __construct(array $data, int $itemsPerPage, $view=false)
     {
-        $this->view = $view;
         $this->data = $data;
         $this->setBaseUri();
         $this->setCurrentPage();
@@ -46,6 +45,7 @@ class SimplePaginator
         $this->setPages();
         $this->setNumberOfPages();
         if ($view) {
+            $this->view = $view;
             $this->addGlobals();
         }
         $this->setHtml();
