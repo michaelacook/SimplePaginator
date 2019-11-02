@@ -104,7 +104,7 @@ $nav = $paginator->getNavHtml();
 <body>
     <ul>
         <?php
-        for ($item in $data) {
+        foreach ($item in $data) {
             // render your data
         }
         ?>
