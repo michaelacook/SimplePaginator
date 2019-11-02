@@ -26,7 +26,7 @@ the instructions to set up SimplePaginator.
 add the `SimplePaginator` namespace to your project's autoloader in `composer.json`:
 
 ```
-"autoload:": {
+"autoload": {
     "psr-4": {
         "SimplePaginator\\": "path/to/SimplePaginator/src"
     }
