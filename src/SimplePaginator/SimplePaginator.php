@@ -18,21 +18,21 @@ namespace SimplePaginator\SimplePaginator;
 class SimplePaginator
 {
 
+    private $data;
     private $view;
     private $paginated;
     private $totalItems;
     private $itemsPerPage;
     private $numberOfPages;
     private $currentPage;
-    private $html;
     private $pages;
-    private $data;
+    private $html;
     private $uri;
 
     /**
     * @param $view must be an instance of the twig view object
     * In Slim 3, use $this->view when instantiating inside a controller or route
-    * By default, @param twig is true, but if you are not using twig, use false
+    * By default, @param view is false and can be omitted if Twig is not being used
     */
     public function __construct($view=false, array $data, int $itemsPerPage)
     {

@@ -2,21 +2,31 @@
 
 Ridiculously easy plug-and-play PHP pagination class for rapid development.
 SimplePaginator is intended for use with [Twig](https://twig.symfony.com/) but
-can also be used without a template engine. On instantiation
-sets up and encapsulates all variables needed for pagination, included navigation
-link hrefs. Comes with a [Bootstrap 4](https://getbootstrap.com/)-based
-pagination nav right out of the box so you don't have to spend time building one.
+can also be used without a template engine. sets up and encapsulates all variables
+needed for pagination, including navigation link hrefs on instantiation. Comes
+with a [Bootstrap 4](https://getbootstrap.com/)-based pagination nav right out
+of the box so you don't have to spend time building one.
 
 ## Getting Started
 
-SimplePaginator is extremely easy to get up and running. Simply download the source
-files and add to your `src` folder in your project. Once you have done so, follow
-the instructions to set up SimplePaginator.
+SimplePaginator is extremely easy to get up and running. To install, open Bash or your
+terminal of choice and change into the `src` directory in your project:
+
+```
+$ cd [path/to/src]
+```
+Then run:
+```
+$ git clone https://github.com/michaelacook/SimplePaginator.git
+```
+Alternatively, you can download the repository as a `.zip` file and extract it to
+your `src` directory.
 
 ### Prerequisites
 * [Bootstrap 4](https://getbootstrap.com/)
 * [Twig](https://twig.symfony.com/) (Optional)
 * [Composer](https://getcomposer.org/) (Highly recommended)
+* [Git](https://git-scm.com/) (Highly recommended)
 
 ### Setup
 (**note:** these instructions assume use of the Slim 3 framework, but the same principles
@@ -43,6 +53,7 @@ to autoload.
 ```php
 <php
 
+
 use SimplePaginator\SimplePaginator\SimplePaginator as Paginator;
 
 
@@ -62,10 +73,10 @@ class ExampleController
 ```
 
 The `SimplePaginator` class requires three arguments: `$view`, `$data`, and `$itemsPerPage`:
-- The `$view` argument must either be the Twig `view` object, or `false`. `$view` has a
+- The `$view` argument must either be the Twig view object, or `false`. `$view` has a
 default value of `false`, so if you are not using Twig then omit this argument.
 - If you are using Slim 3, `$view` will be the `Slim\Views\Twig` object registered on
-the dependency injection container.
+the `$container`.
 - `$data` is the data to be paginated and displayed dynamically. This could be the
 results of a database query or other application data to be displayed in the view.
 `$data` must be an `array`.
@@ -99,6 +110,10 @@ pagination nav:
 
 ```php
 <?php
+// Instantiate SimplePaginator object
+
+$data = $paginator->getPage();
+
 $nav = $paginator->getNavHtml();
 ?>
 <body>
