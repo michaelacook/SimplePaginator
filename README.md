@@ -2,7 +2,9 @@
 
 Ridiculously easy plug-and-play PHP pagination class for rapid development.
 SimplePaginator is intended for use with [Twig](https://twig.symfony.com/) but
-can also be used without a template engine. Comes with a [Bootstrap 4](https://getbootstrap.com/)-based
+can also be used without a template engine. On instantiation
+sets up and encapsulates all variables needed for pagination, included navigation
+link hrefs. Comes with a [Bootstrap 4](https://getbootstrap.com/)-based
 pagination nav right out of the box so you don't have to spend time building one.
 
 ## Getting Started
@@ -34,7 +36,7 @@ add the `SimplePaginator` namespace to your project's autoloader in `composer.js
 You may need to then run `composer dump-autoload` for the `SimplePaginator` class
 to autoload.
 
-2. If you are using Twig, add the `nav.twig` file to your templates directory.
+2. If you are using Twig, add the `nav.twig` file to your `templates` directory.
 
 3. Instantiate the `SimplePaginator` class in your controller:
 
@@ -44,12 +46,12 @@ to autoload.
 use SimplePaginator\SimplePaginator\SimplePaginator as Paginator;
 
 
-class TestController
+class ExampleController
 {
 
     public function render($request, $response, $args)
     {
-        // An example model representing dynamic data
+        // An example variable representing dynamic data
         $data = $exampleModel->getData();
 
         $paginator = new Paginator($this->view, $data, 10);
@@ -62,6 +64,8 @@ class TestController
 The `SimplePaginator` class requires three arguments: `$view`, `$data`, and `$itemsPerPage`:
 - The `$view` argument must either be the Twig `view` object, or `false`. `$view` has a
 default value of `false`, so if you are not using Twig then omit this argument.
+- If you are using Slim 3, `$view` will be the `Slim\Views\Twig` object registered on
+the dependency injection container.
 - `$data` is the data to be paginated and displayed dynamically. This could be the
 results of a database query or other application data to be displayed in the view.
 `$data` must be an `array`.
@@ -124,7 +128,7 @@ pagination nav.
 * Laziness - I hate setting up pagination from scratch
 
 ## Contributing
-If you find a bug or a way to make this micro-library better in any way, please feel
+If you find a bug or a way to make this component better in any way, please feel
 free to make a pull request!
 
 ## Authors
