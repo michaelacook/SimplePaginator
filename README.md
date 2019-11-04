@@ -131,7 +131,7 @@ $nav = $paginator->getNavHtml();
 ```
 
 6. Add `page=1` as a query string to the url for your page and any anchor tags that link to it. Without
-this step, SimplePaginator can't do it's magic. E.g. `localhost:/example_page?page=1`
+this step, SimplePaginator can't do it's magic. E.g: `localhost:/example_page?page=1`
 
 Viola! You should be able to page through your dynamic data with a simple Bootstrap
 pagination nav.
