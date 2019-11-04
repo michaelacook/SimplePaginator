@@ -2,15 +2,14 @@
 
 Ridiculously easy plug-and-play PHP pagination class for rapid development.
 SimplePaginator is intended for use with [Twig](https://twig.symfony.com/) but
-can also be used without a template engine. sets up and encapsulates all variables
+can also be used without a template engine. Sets up and encapsulates all variables
 needed for pagination, including navigation link hrefs on instantiation. Comes
 with a [Bootstrap 4](https://getbootstrap.com/)-based pagination nav right out
 of the box so you don't have to spend time building one.
 
 ## Getting Started
 
-SimplePaginator is extremely easy to get up and running. To install, open Bash or your
-terminal of choice and change into the `src` directory in your project:
+SimplePaginator is extremely easy to get up and running. To install, change into the `src` directory in your project:
 
 ```
 $ cd [path/to/src]
@@ -30,10 +29,10 @@ your `src` directory.
 
 ### Setup
 (**note:** these instructions assume use of the Slim 3 framework, but the same principles
-    should apply regardless of the framework you are using. Keep in mind you may need to
-    adapt these instructions to your particular case.)
+should apply regardless of the framework you are using. Keep in mind you may need to
+adapt these instructions to your particular case.)
 1. After adding the source files to your project's `src` directory,
-add the `SimplePaginator` namespace to your project's autoloader in `composer.json`:
+add the `SimplePaginator` class to your project's autoloader in `composer.json`:
 
 ```
 "autoload": {
@@ -62,17 +61,17 @@ class ExampleController
 
     public function render($request, $response, $args)
     {
-        // An example variable representing dynamic data
+        // Example variable holding dynamic data
         $data = $exampleModel->getData();
 
         $paginator = new Paginator($data, 10, $this->view);
 
-        return $this->view->render($response, 'test.twig', $args);
+        return $this->view->render($response, 'example.twig', $args);
     }
 }
 ```
 
-The `SimplePaginator` class requires three arguments: $data`, `$itemsPerPage`, and `$view`:
+The `SimplePaginator` class requires three arguments: `$data`, `$itemsPerPage`, and `$view`:
 - `$data` is the data to be paginated and displayed dynamically. This could be the
 results of a database query or other application data to be displayed in the view.
 `$data` must be an `array`.
@@ -88,7 +87,7 @@ the `$container`.
 ```php
 $args['data'] = $paginator->getPage();
 
-return $this->view->render($response, 'test.twig', $args);
+return $this->view->render($response, 'example.twig', $args);
 ```
 
 5. Loop through your data and render according to your needs. If you are using
@@ -120,7 +119,7 @@ $nav = $paginator->getNavHtml();
     <div class="container">
         <ul>
             <?php
-            foreach ($item in $data) {
+            foreach ($data as $key => $value) {
                 // render your data
             }
             ?>
@@ -131,8 +130,8 @@ $nav = $paginator->getNavHtml();
 </body>
 ```
 
-6. Add `?page=1` as a query string to the url for your page and any anchor tags that link to it. Without
-this step, SimplePaginator can't do it's magic.
+6. Add `page=1` as a query string to the url for your page and any anchor tags that link to it. Without
+this step, SimplePaginator can't do it's magic. E.g. `localhost:/example_page?page=1`
 
 Viola! You should be able to page through your dynamic data with a simple Bootstrap
 pagination nav.
