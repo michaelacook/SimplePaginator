@@ -1,6 +1,6 @@
 # SimplePaginator
 
-Ridiculously easy plug-and-play PHP pagination class for rapid development.
+Ridiculously easy plug-and-play PHP pagination or rapid development.
 SimplePaginator is intended for use with [Twig](https://twig.symfony.com/) but
 can also be used without a template engine. Sets up and encapsulates all variables
 needed for pagination, including navigation link hrefs on instantiation. Comes
